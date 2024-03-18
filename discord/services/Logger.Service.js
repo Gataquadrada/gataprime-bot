@@ -78,6 +78,8 @@ export class Logger extends ServiceConstructor {
     discordTrackVoiceState = async (before, after) => {
         const { member } = before
 
+        if (member.guild.id !== this.guild.id) return null
+
         let message = null
 
         if (before?.channelId == after?.channelId) return null
@@ -98,6 +100,8 @@ export class Logger extends ServiceConstructor {
     }
 
     discordTrackMemberAdd = async (member) => {
+        if (member.guild.id !== this.guild.id) return null
+
         this.discordUtils.say(
             this.#logChannel,
             `\`${member.displayName}\` (\`${member.user.tag}\`) joined the server`
@@ -105,6 +109,8 @@ export class Logger extends ServiceConstructor {
     }
 
     discordTrackMemberRemove = async (member) => {
+        if (member.guild.id !== this.guild.id) return null
+
         this.discordUtils.say(
             this.#logChannel,
             `\`${member.displayName}\` (\`${member.user.tag}\`) **LEFT** the server`
@@ -112,6 +118,8 @@ export class Logger extends ServiceConstructor {
     }
 
     discordTrackMemberBan = async (member) => {
+        if (member.guild.id !== this.guild.id) return null
+
         this.discordUtils.say(
             this.#logChannel,
             `\`${member.displayName}\` (\`${member.user.tag}\`) **GOT BANNED** from the server`
@@ -119,6 +127,8 @@ export class Logger extends ServiceConstructor {
     }
 
     discordTrackMemberUnban = async (member) => {
+        if (member.guild.id !== this.guild.id) return null
+
         this.discordUtils.say(
             this.#logChannel,
             `\`${member.displayName}\` (\`${member.user.tag}\`) got unbanned from the server`
